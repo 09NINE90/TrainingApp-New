@@ -1,5 +1,6 @@
 package ru.razum0ff.WorkoutApp.api;
 
+import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -38,5 +39,11 @@ public class UserApi {
         UserEntity userToSave = mapper.convertToEntity(user);
         userService.createUser(userToSave);
         return "OK";
+    }
+
+    @GetMapping("/getAuthUser")
+    public String getAuthUser(Authentication authentication){
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        return userService.getAuthUser(userDetails);
     }
 }

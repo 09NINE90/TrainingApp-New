@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная</title>
+  <meta th:name="_csrf" th:content="${_csrf.token}"/>
+  <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="style.css">
+  <script th:src="@{/js/anime.min.js}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div class="nav">
+  <div class="container">
+    <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" class="menu">
+      <div class="menu_item"><a href='/api/v1/home' data-item='главная'>главная</a></div>
+      <div class="menu_item"><a href='/api/v1/getWorkoutPage' data-item='тренировки'>тренировки</a></div>
+      <div class="menu_item"><a href='/api/v1/getNutritionPage' data-item='питание'>питание</a></div>
+      <div class="menu_item"><a href='/api/v1/getReports' data-item='отчеты'>отчеты</a></div>
+      <div class="menu_item"><a href='/api/v1/getActivity' data-item='активность'>активность</a></div>
+      <div class="menu_item"><a href='/user/logout' data-item='выйти'>выйти</a></div>
+    </div>
+    <div class="menu-small">
+      <div class="menu_small_item"><a href='/api/v1/home' data-item='главная'>главная</a></div>
+      <div class="menu_small_item"><a href='/api/v1/getWorkoutPage' data-item='тренировки'>тренировки</a></div>
+      <div class="menu_small_item"><a href='/api/v1/getNutritionPage' data-item='питание'>питание</a></div>
+      <div class="menu_small_item"><a href='/api/v1/getReports' data-item='отчеты'>отчеты</a></div>
+      <div class="menu_small_item"><a href='/api/v1/getActivity' data-item='активность'>активность</a></div>
+      <div class="menu_small_item"><a href='/user/logout' data-item='выйти'>выйти</a></div>
+
+    </div>
+    <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" class="menu_small_icon">
+      <div class="stick"></div>
+      <div class="stick"></div>
+      <div class="stick"></div>
+    </div>
+
+  </div>
+
+</div>
+<div class="profile">
+  <h2>Главная <a href='/user/logout' data-item='выйти'>выйти</a></h2>
+  <div class="contact">
+    <p>Email: <span id="user-email"></span></p>
+    <p>Имя: <span id="user-first-name"></span></p>
+    <p>Фамилия: <span id="user-last-name"></span></p>
+  </div>
+  <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+    <a href='/api/v1/createPhysicalParameters' data-item='Добавить данные в таблицу'>Добавить данные в таблицу</a>
+  </div>
+  <div class="table-container">
+    <table th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>Вес (кг)</th>-->
+<!--        <th>Обхват ноги (см)</th>-->
+<!--        <th>Обхват руки (см)</th>-->
+<!--        <th>Обхват бедер (см)</th>-->
+<!--        <th>Обхват талии (см)</th>-->
+<!--        <th>Обхват грудной клетки (см)</th>-->
+<!--        <th>Дата</th>-->
+<!--        &lt;!&ndash; Добавьте другие колонки по необходимости &ndash;&gt;-->
+<!--      </tr>-->
+<!--      </thead>-->
+      <tbody>
+<!--      <tr th:each="physicalParameters : ${userPhysicalParametersList}">-->
+<!--        <td th:text="${physicalParameters.weight}"></td>-->
+<!--        <td th:text="${physicalParameters.legGirth}"></td>-->
+<!--        <td th:text="${physicalParameters.armCircumference}"></td>-->
+<!--        <td th:text="${physicalParameters.hipCircumference}"></td>-->
+<!--        <td th:text="${physicalParameters.waistCircumference}"></td>-->
+<!--        <td th:text="${physicalParameters.chestCircumference}"></td>-->
+<!--        <td th:text="${#dates.format(physicalParameters.date, 'dd/MM/yyyy')}"></td>-->
+<!--        &lt;!&ndash; Добавьте другие ячейки по необходимости &ndash;&gt;-->
+<!--      </tr>-->
+      </tbody>
+    </table>
+  </div>
+  <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'') or hasRole(''ROLE_COACH'')')}">
+    <a href='/api/v1/create' data-item='Добавить пользователя'>Добавить пользователя</a>
+  </div>
+  <div class="table-container">
+    <table th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'') or hasRole(''ROLE_COACH'')')}">
+      <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Информация</th>
+        <!-- Добавьте другие колонки по необходимости -->
+      </tr>
+      </thead>
+      <tbody>
+<!--      <tr th:each="user : ${usersList}">-->
+<!--        <td th:text="${user.firstName}"></td>-->
+<!--        <td th:text="${user.lastName}"></td>-->
+<!--        <td th:text="${user.userName}"></td>-->
+<!--        <td th:text="${user.phoneNumber}"></td>-->
+<!--        <td><a th:href="@{'/user/' + ${user.id}}"><span>Перейти</span></a>/<a th:href="@{'/user/delete/' + ${user.id}}"><span>Удалить</span></a></td>-->
+<!--        &lt;!&ndash; Добавьте другие ячейки по необходимости &ndash;&gt;-->
+<!--      </tr>-->
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<script>
+  let condition = true;
+
+  function forward() {
+    anime({
+      targets: '.menu-small',
+      translateX: ['-100%', '0'],
+      easing: 'easeInOutQuad',
+      direction: 'alternate',
+      duration: 500,
+      loop: false
+    });
+
+    condition = false
+  }
+
+  function backward() {
+    anime({
+      targets: '.menu-small',
+      translateX: ['0', '-100%'],
+      easing: 'easeInOutQuad',
+      direction: 'alternate',
+      duration: 500,
+      loop: false
+    });
+
+    condition = true
+  }
+
+  $('.menu_small_icon').click(function () {
+    if (condition) {
+      forward();
+    } else {
+      backward();
+    }
+  });
+
+  let start = 0;
+  let end = 0;
+  $('.container').on('touchstart', function (event) {
+    start = event.originalEvent.touches[0].pageX;
+  });
+  $('.container').on('touchend', function (event) {
+    end = event.originalEvent.changedTouches[0].pageX;
+    if (end - start >= 100 && condition) {
+      forward();
+    } else if (start - end >= 100 && !condition) {
+      backward();
+    }
+
+  });
+</script>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

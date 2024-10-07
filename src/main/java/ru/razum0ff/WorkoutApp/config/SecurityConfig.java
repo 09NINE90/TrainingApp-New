@@ -39,7 +39,7 @@ public class SecurityConfig {
                                 .anyRequest()
                                 .authenticated())
                 .formLogin(form -> form.loginPage("/login")
-                        .defaultSuccessUrl("/user/create",true))
+                        .defaultSuccessUrl("/mainPage",true))
                 .build();
     }
     @Bean

@@ -6,7 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageApi {
     @GetMapping("/user/create")
-    public String userCreate(){
+    public String getSignupForm(){
         return "signup-form";
+    }
+
+    @GetMapping("/mainPage")
+    public String getMainPage(){
+        return "main-page";
     }
 }
