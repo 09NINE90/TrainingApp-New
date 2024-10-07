@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/login-form.css}">
+</head>
+<body>
+
+<section>
+  <div class="signin">
+    <div class="content">
+      <h2>регистрация</h2>
+      <form class="form" th:action="@{/user/create}" th:object="${user}"  method="post">
+
+        <div class="inputBox">
+          <input type="text" th:field="*{firstName}" name = "firstname"  required><i>Имя</i>
+        </div>
+        <div class="inputBox">
+          <input type="text" th:field="*{lastName}" name = "lastName"  required><i>Фамилия</i>
+        </div>
+        <div class="inputBox">
+          <input type="email" th:field="*{userName}" name = "email"  required><i>Email</i>
+        </div>
+        <div class="inputBox">
+          <input type="tel" th:field="*{phoneNumber}" name = "phoneNumber"  required><i>Номер телефона</i>
+        </div>
+        <div class="inputBox">
+          <input type="password" th:field="*{password}" name = "password"  required><i>Пароль</i>
+        </div>
+        <div class="inputBox">
+          <input type="password" th:field="*{confirmPassword}" name = "confirmPassword"  required><i>Подтвендите пароль</i>
+        </div>
+        <div class="inputBox">
+
+          <input type="submit" value="зарегистрировать">
+
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+</body>
+</html>
