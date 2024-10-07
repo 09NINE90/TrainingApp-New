@@ -38,7 +38,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
-
+	implementation group: 'org.apache.commons', name: 'commons-jexl3', version: '3.0'
 }
 
 tasks.named('test') {

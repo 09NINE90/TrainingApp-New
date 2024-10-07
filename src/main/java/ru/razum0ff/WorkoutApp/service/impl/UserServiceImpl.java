@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.razum0ff.WorkoutApp.dto.UserDTO;
+import org.springframework.transaction.annotation.Transactional;
 import ru.razum0ff.WorkoutApp.entity.UserEntity;
 import ru.razum0ff.WorkoutApp.mapper.UserMapper;
 import ru.razum0ff.WorkoutApp.repository.UserRepository;
@@ -19,14 +19,15 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder encoder;
 
     @Override
-    public UserDTO createUser(UserEntity user) {
+    @Transactional
+    public void createUser(UserEntity user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        UserEntity savedUser = userRepository.save(user);
-        return mapper.convertToDto(savedUser);
+        UserEntity userToSave = user;
+        userRepository.save(userToSave);
     }
 
     @Override
-    public UserEntity getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public UserEntity getUserByEmail(String username) {
+        return userRepository.findByUsername(username);
     }
 }

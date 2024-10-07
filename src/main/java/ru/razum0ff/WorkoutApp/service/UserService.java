@@ -5,6 +5,6 @@ import ru.razum0ff.WorkoutApp.entity.UserEntity;
 
 public interface UserService {
 
-    UserDTO createUser(UserEntity user);
+    void createUser(UserEntity user);
     UserEntity getUserByEmail(String email);
 }

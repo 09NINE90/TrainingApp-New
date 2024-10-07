@@ -16,14 +16,14 @@
             <h2>вход</h2>
             <form class="form" th:action="@{/login}" method="post">
                 <div class="inputBox">
-
                     <input type="text" name = "username" required><i>Логин</i>
-
                 </div>
                 <div class="inputBox">
                     <input type="password" name = "password"  required><i>Пароль</i>
                 </div>
-                <!--                <a href="/user/create">create</a>-->
+                <div class="inputBox">
+                    <a href="/user/create">create</a>
+                </div>
                 <div class="inputBox">
                     <input id = "entry-btn" type="submit" value="войти">
                 </div>

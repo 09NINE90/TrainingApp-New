@@ -7,15 +7,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.razum0ff.WorkoutApp.dto.CustomUserDetails;
 import ru.razum0ff.WorkoutApp.entity.UserEntity;
+import ru.razum0ff.WorkoutApp.repository.UserRepository;
 
 @Service
 public class SecurityService implements UserDetailsService {
 
     @Autowired
-    UserService userService;
+    UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity foundUser = userService.getUserByEmail(username);
+        UserEntity foundUser = userRepository.findByUsername(username);
         if (foundUser == null) {
             throw new UsernameNotFoundException(username);
         }
