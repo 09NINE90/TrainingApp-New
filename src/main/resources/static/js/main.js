@@ -49,7 +49,6 @@ function getMyPhysicalParameters() {
     fetch('/user/getMyPhysicalParameters')
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             data.forEach(parameters => {
                 const row = tbody.insertRow();
                 row.setAttribute('data-cart', JSON.stringify(parameters)); // Добавляем объект cart как атрибут строки
@@ -76,20 +75,24 @@ function getUsers() {
         .then(data => {
             data.forEach(users => {
                 const row = tbody.insertRow();
-                row.setAttribute('data-cart', JSON.stringify(users)); // Добавляем объект cart как атрибут строки
+                row.setAttribute('data-user', JSON.stringify(users)); // Добавляем объект cart как атрибут строки
                 row.innerHTML = `
                                 <td>${users.name}</td>
                                 <td>${users.email}</td>
                                 <td>${users.phoneNumber}</td>
-                                <td>Инфо</td>
+                                <td><button id="to-user-page">Перейти</button></td>
                                `
                 ;
+                const btnToUserPage = row.querySelector('#to-user-page')
+                btnToUserPage.addEventListener('click', ()=>{
+                    console.log(row.getAttribute('data-user'))
+                    window.location.href = `/user/getUserPage/${users.id}`;
+                })
                 table.appendChild(tbody);
                 tableContainer.appendChild(table);
             })
         })
         .catch(error => console.error('Ошибка получения данных:', error));
-
 }
 
 

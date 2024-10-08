@@ -14,7 +14,6 @@ import ru.razum0ff.WorkoutApp.repository.UserPhysicalParametersRepository;
 import ru.razum0ff.WorkoutApp.service.UserPhysicalParametersService;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

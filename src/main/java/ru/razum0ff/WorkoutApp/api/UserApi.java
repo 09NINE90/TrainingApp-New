@@ -1,12 +1,12 @@
 package ru.razum0ff.WorkoutApp.api;
 
-import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.razum0ff.WorkoutApp.dto.CustomUserDetails;
 import ru.razum0ff.WorkoutApp.dto.UserDTO;
 import ru.razum0ff.WorkoutApp.entity.UserEntity;
@@ -53,5 +53,20 @@ public class UserApi {
     public String getUsers(Authentication authentication){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         return userService.getUsersByTrainerId(userDetails.getId());
+    }
+
+    @GetMapping("/getSignupForm")
+    public ModelAndView getSignupForm(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("signup-form");
+        return modelAndView;
+    }
+
+    @GetMapping("/getUserPage/{id}")
+    public ModelAndView getUserPage(@PathVariable("id") String id){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user-page");
+        modelAndView.addObject(id);
+        return modelAndView;
     }
 }

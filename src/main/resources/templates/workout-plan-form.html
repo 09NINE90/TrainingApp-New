@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Форма для плана тренировок</title>
+  <meta th:name="_csrf" th:content="${_csrf.token}"/>
+  <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/login-form.css}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<section>
+  <p style="display: none" ><span id="user-id"></span></p>
+  <div class="workout">
+    <div class="content">
+      <h2>Тренировка</h2>
+      <form class="form" id="dynamic-form" method="post">
+        <div class="form-group">
+          <div class="inputBox">
+            <input type="text" id = "dayOfWeek" name="dayOfWeek" ><i>Название тренировки</i>
+          </div>
+          <div class="inputBox">
+            <input type="text"  id = "exercises1" name="exercises1" ><i>Упражнение 1</i>
+          </div>
+          <div class="inputBox">
+            <input type="text"  id = "repetitions1" name="repetitions1" ><i>Повторения</i>
+          </div>
+        </div>
+        <div class="inputBox" id = "add-btn">
+          <input type="submit" value="добавить упражнение">
+        </div>
+        <div class="inputBox" id = "submit-btn">
+          <input type="submit" value="добавить тренировку">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<script th:src="@{/js/workout-plan.js}"></script>
+</body>
+</html>

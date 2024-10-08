@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +50,7 @@ public class UserServiceImpl implements UserService {
         userObject.addProperty("lastName", user.getLastName());
         userObject.addProperty("email", user.getUsername());
         userObject.addProperty("role", user.getRole());
+        userObject.addProperty("id", String.valueOf(user.getId()));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(userObject);
     }
@@ -64,6 +64,7 @@ public class UserServiceImpl implements UserService {
             objectUser.addProperty("name", user.getLastName() + " " + user.getFirstName());
             objectUser.addProperty("email", user.getUsername());
             objectUser.addProperty("phoneNumber", user.getPhoneNumber());
+            objectUser.addProperty("id", user.getId().toString());
             arrayUsersByTrainerId.add(objectUser);
         }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
