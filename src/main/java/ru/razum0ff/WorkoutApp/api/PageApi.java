@@ -14,4 +14,9 @@ public class PageApi {
     public String getMainPage(){
         return "main-page";
     }
+
+    @GetMapping("/user/getUserPhysicalParametersFormPage")
+    public String getUserPhysicalParametersFormPage(){
+        return "user-physical-parameters-form";
+    }
 }

@@ -20,7 +20,7 @@ public class UserPhysicalParameters {
     private UUID id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserEntity userId;
+    private UserEntity user;
     private int age; // Возраст
     private double weight; // Вес
     private double armCircumference; //Обхват руки
@@ -31,4 +31,11 @@ public class UserPhysicalParameters {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date; //Дата обновления параметров
+
+    @Override
+    public String toString(){
+        return "Вес: " + this.weight + " Обхват руки: " + this.armCircumference + " Обхват ноги: " + this.legGirth +
+                " Обхват грудной клетки: " + this.chestCircumference + " Обхват бедер: " + this.waistCircumference +
+                " Дата: " + this.date;
+    }
 }

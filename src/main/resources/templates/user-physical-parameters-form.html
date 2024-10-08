@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Форма регистрации</title>
+  <title>Форма физических параметров</title>
   <meta th:name="_csrf" th:content="${_csrf.token}"/>
   <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,35 +15,36 @@
   <section>
     <div class="default-from">
       <div class="content">
-        <h2>регистрация</h2>
+        <h2>физические параметры</h2>
         <form class="form">
-
           <div class="inputBox">
-            <input type="text" id="first-name" name = "firstname"><i>Имя</i>
+            <input type="number" id="weight" name="weight"><i>Вес (кг)</i>
           </div>
           <div class="inputBox">
-            <input type="text" id="last-name"  name = "lastName"><i>Фамилия</i>
+            <input type="number" id="leg-girth" name="legGirth"><i>Обхват ноги (см)</i>
           </div>
           <div class="inputBox">
-            <input type="email" id="email"  name = "email"><i>Email</i>
+            <input type="number" id="arm-circumference" name="armCircumference"><i>Обхват руки (см)</i>
           </div>
           <div class="inputBox">
-            <input type="tel"  id="phone-number" name = "phoneNumber"><i>Номер телефона</i>
+            <input type="number" id="hip-circumference" name="hipCircumference"><i>Обхват бедер (см)</i>
           </div>
           <div class="inputBox">
-            <input type="password" id="password" name = "password"><i>Пароль</i>
+            <input type="number" id="waist-circumference" name="waistCircumference"><i>Обхват талии (под пупком) (см)</i>
           </div>
           <div class="inputBox">
-            <input type="password" id="confirm-password" name = "confirmPassword"><i>Подтвендите пароль</i>
+            <input type="number" id="chest-circumference" name="chestCircumference"><i>Обхват грудной клетки (см)</i>
           </div>
           <div class="inputBox">
-            <input id="signup-btn" type="button" value="зарегистрировать">
+            <input type="date" id="date"  name="date"><i>Дата</i>
+          </div>
+          <div class="inputBox">
+            <input id="add-physical-parameters-btn" type="button" value="добавить">
           </div>
         </form>
       </div>
     </div>
   </section>
-  <script th:src="@{/js/auth-form.js}"></script>
-  <script th:src="@{/js/phone-number-form.js}"></script>
+  <script th:src="@{/js/user-physical-parameters-form.js}"></script>
 </body>
 </html>

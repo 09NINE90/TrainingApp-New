@@ -16,12 +16,12 @@ body {
     background: #181818;
 }
 
-a{
+a {
     text-decoration: none;
     color: #fff;
 }
 
-.nav{
+.nav {
     display: block;
     position: relative;
     z-index: 10;
@@ -29,7 +29,11 @@ a{
     background: #000;
 }
 
-.profile{
+.nav-include {
+    width: 100%;
+}
+
+.profile {
     padding-top: 20px;
     padding-bottom: 200px;
     margin-top: 50px;
@@ -44,24 +48,27 @@ a{
     box-shadow: 0 15px 35px rgb(0, 0, 6);
 
 }
-.profile p{
+
+.profile p {
     padding: 10px;
     /* z-index: 1000; */
     color: #ffffff;
     opacity: 1;
 }
-.profile h2{
+
+.profile h2 {
     font-size: 2em;
     color: #ce0000;
     text-transform: uppercase;
     text-align: center;
 }
 
-.profile .add_btn{
+.profile .add_btn {
     margin-top: 20px;
     padding: 10px;
 }
-.profile .add_btn a{
+
+.profile .add_btn a {
     text-decoration: none;
     text-transform: uppercase;
     background: #ce0000;
@@ -69,23 +76,28 @@ a{
     color: white;
     padding: 7px;
 }
-.profile table{
+
+.profile table {
     color: #ffffff;
     /* z-index: 9999; */
 
 }
+
 nav {
     padding-top: 15px;
     padding-bottom: 15px;
     padding-inline: 25%;
     position: relative;
     z-index: 20;
+
 .menuItems {
     list-style: none;
     display: flex;
     /*flex-direction: row;*/
     justify-content: space-between;
+
 li {
+
 /*margin-inline: 50px;*/
 a {
     text-decoration: none;
@@ -96,41 +108,47 @@ a {
     position: relative;
     text-transform: uppercase;
 
-&::before {
-     content: attr(data-item);
-     transition: 0.5s;
-     color: #fff;
-     position: absolute;
-     top: 0;
-     bottom: 0;
-     left: 0;
-     right: 0;
-     width: 0;
-     overflow: hidden;
- }
-
-&:hover {
-&::before {
-     width: 100%;
-     transition: all 0.5s ease-in-out;
- }
-}
-}
-}
-}
+&
+::before {
+    content: attr(data-item);
+    transition: 0.5s;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    overflow: hidden;
 }
 
-table{
+&
+:hover {
+
+&
+::before {
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+}
+}
+}
+}
+}
+
+table {
     padding-top: 20px;
     margin-top: 20px;
     width: 100%;
 }
 
-li{
+li {
     list-style-type: none;
     border-bottom: 1px solid white; /* Линия между элементами */
     padding-bottom: 5px;
 }
+
 li:last-child {
     border-bottom: none; /* Убираем линию после последнего элемента */
     padding-bottom: 0; /* Убираем отступ после последнего элемента */
@@ -145,6 +163,7 @@ th {
     color: #ffffff;
     padding: 8px;
 }
+
 td {
     background: #181818;
     /*border-bottom: 1px solid white;*/
@@ -160,8 +179,8 @@ td {
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.form .inputBox
-{
+
+.form .inputBox {
     margin-top: 5px;
     position: relative;
     width: 40%;
@@ -169,8 +188,7 @@ td {
 }
 
 
-.form .inputBox input
-{
+.form .inputBox input {
     position: relative;
     width: 100%;
     background: #333;
@@ -182,12 +200,12 @@ td {
     font-weight: 500;
     font-size: 1em;
 }
+
 .table-container {
     overflow-x: auto;
 }
 
-.form .inputBox input[type="submit"]
-{
+.form .inputBox input[type="submit"] {
     padding: 10px;
     background: #ce0000;
     text-transform: uppercase;
@@ -198,11 +216,12 @@ td {
     cursor: pointer;
     width: 105%;
 }
-input[type="submit"]:hover{
+
+input[type="submit"]:hover {
     opacity: 0.6;
 }
-input[type="submit"]:active
-{
+
+input[type="submit"]:active {
     opacity: 0.6;
 }
 
@@ -238,11 +257,11 @@ body {
     text-transform: uppercase;
 }
 
-.menu a{
+.menu a {
     color: #ce0000;
 }
 
-.menu a:hover{
+.menu a:hover {
     color: #fff;
 }
 
@@ -278,17 +297,19 @@ body {
 }
 
 @media (max-width: 768px) {
-    .profile h2{
+    .profile h2 {
         font-size: 24px;
     }
+
     .menu {
         display: none;
     }
-    .form .inputBox
-    {
+
+    .form .inputBox {
         width: 80%;
         font-size: 14px;
     }
+
     .menu-small {
 
         display: flex;
@@ -313,14 +334,12 @@ body {
         /* background: pink; */
     }
 
-    .menu_small_item a{
+    .menu_small_item a {
         color: #ce0000;
         text-transform: uppercase;
         font-size: 24px;
 
     }
-
-
 
 
     .menu_small_item:first-child {
@@ -349,14 +368,14 @@ body {
         margin: 0
     }
 
-    .profile{
+    .profile {
         padding-top: 100px;
         margin-top: 0;
         width: 80vw;
 
     }
 
-    table{
+    table {
         padding-top: 20px;
         max-width: 100%;
         margin-top: 20px;
@@ -372,6 +391,7 @@ body {
         color: #ffffff;
         padding: 8px;
     }
+
     td {
         font-size: 10px;
         background: #181818;
@@ -382,11 +402,11 @@ body {
         padding: 8px;
     }
 
-    .add_btn a{
+    .add_btn a {
         font-size: 14px;
     }
 
-    .contact{
+    .contact {
         margin-top: 25px;
         font-size: 14px;
     }

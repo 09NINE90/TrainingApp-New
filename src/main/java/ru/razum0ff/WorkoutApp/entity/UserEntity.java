@@ -15,7 +15,6 @@ import java.util.UUID;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
     @Column(name = "trainer_id")
@@ -32,4 +31,11 @@ public class UserEntity {
     private String username;
     @Column(name = "password")
     private String password;
+
+    @Override
+    public String toString(){
+        return "id: " + this.id + " firstName: " + this.firstName + " lastName: " + this.lastName +
+                " roles: " + this.roles + " phoneNumber: " + this.phoneNumber +
+                " username: " + this.username;
+    }
 }

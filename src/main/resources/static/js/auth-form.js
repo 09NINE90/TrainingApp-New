@@ -64,7 +64,9 @@ signUpBtn.addEventListener('click', ()=>{
         })
             .then((response) => {
                 console.log(response);
-                alert('Пользователь добавлен!')
+                if (response.ok){
+                    window.location.href = '/mainPage';
+                }
             })
             .catch((error) => {
                 console.error('Ошибка при регистрации:', error);

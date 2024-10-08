@@ -1,0 +1,25 @@
+<div class="nav">
+    <div class="container">
+        <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" class="menu">
+            <div class="menu_item"><a href='/mainPage' data-item='главная'>главная</a></div>
+            <div class="menu_item"><a href='/api/v1/getWorkoutPage' data-item='тренировки'>тренировки</a></div>
+            <div class="menu_item"><a href='/api/v1/getNutritionPage' data-item='питание'>питание</a></div>
+            <div class="menu_item"><a href='/api/v1/getReports' data-item='отчеты'>отчеты</a></div>
+            <div class="menu_item"><a href='/api/v1/getActivity' data-item='активность'>активность</a></div>
+            <div class="menu_item"><a href='/user/logout' data-item='выйти'>выйти</a></div>
+        </div>
+        <div class="menu-small">
+            <div class="menu_small_item"><a href='/mainPage' data-item='главная'>главная</a></div>
+            <div class="menu_small_item"><a href='/api/v1/getWorkoutPage' data-item='тренировки'>тренировки</a></div>
+            <div class="menu_small_item"><a href='/api/v1/getNutritionPage' data-item='питание'>питание</a></div>
+            <div class="menu_small_item"><a href='/api/v1/getReports' data-item='отчеты'>отчеты</a></div>
+            <div class="menu_small_item"><a href='/api/v1/getActivity' data-item='активность'>активность</a></div>
+            <div class="menu_small_item"><a href='/user/logout' data-item='выйти'>выйти</a></div>
+        </div>
+        <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" class="menu_small_icon">
+            <div class="stick"></div>
+            <div class="stick"></div>
+            <div class="stick"></div>
+        </div>
+    </div>
+</div>

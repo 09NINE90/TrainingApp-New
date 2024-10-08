@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetails extends UserEntity implements UserDetails {
 
     private final UserEntity user;
 

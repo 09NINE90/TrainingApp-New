@@ -3,6 +3,8 @@ package ru.razum0ff.WorkoutApp.api;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.razum0ff.WorkoutApp.dto.CustomUserDetails;
@@ -25,7 +27,7 @@ public class UserApi {
     }
 
     @PostMapping("/createUser")
-    public String userSave(Authentication authentication, @RequestBody UserDTO user){
+    public ResponseEntity<Void> userSave(Authentication authentication, @RequestBody UserDTO user){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         if (userDetails.getRole().equals("ROLE_COACH")){
             user.setTrainerId(userDetails.getId());
@@ -38,12 +40,18 @@ public class UserApi {
 //        mailService.sendMail(user, MailType.REGISTRATION, new Properties());
         UserEntity userToSave = mapper.convertToEntity(user);
         userService.createUser(userToSave);
-        return "OK";
+        return ResponseEntity.status(HttpStatus.CREATED).header("Location", "/mainPage").build();
     }
 
     @GetMapping("/getAuthUser")
     public String getAuthUser(Authentication authentication){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         return userService.getAuthUser(userDetails);
+    }
+
+    @GetMapping("/getUsers")
+    public String getUsers(Authentication authentication){
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        return userService.getUsersByTrainerId(userDetails.getId());
     }
 }
