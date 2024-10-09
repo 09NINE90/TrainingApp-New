@@ -32,7 +32,7 @@ public class UserPhysicalParametersServiceImpl implements UserPhysicalParameters
     }
 
     @Override
-    public String getMyPhysicalParameters(UserEntity user) {
+    public String getPhysicalParametersByUser(UserEntity user) {
         List<UserPhysicalParameters> list = repository.findAllByUserOrderByDateDesc(user);
         JsonArray arrayParameters = new JsonArray();
         for(UserPhysicalParameters parameters : list){

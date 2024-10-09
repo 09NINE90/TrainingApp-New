@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Страница пользователя</title>
+    <title class="user-name"></title>
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
     <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <meta name="user-id" th:content="${id}">
+    <meta th:name="user-id" th:content="${id}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -13,6 +13,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-<h1 th:id="${id}" th:text="${id}"></h1>
+<div class="nav-include" th:include="menu-user.html"></div>
+<div class="profile">
+    <h2>Страница пользователя</h2>
+    <div class="contact">
+        <p>Фимилия имя: <span class="user-name"></span></p>
+        <p>Email: <span id="user-email"></span></p>
+        <p>Телефон: <a id="user-phone-number-a" href="tel:"><span id="user-phone-number"></span></a></p>
+        <p style="display: none">Роль: <span id="user-role"></span></p>
+    </div>
+    <h3>Физические параметры</h3>
+    <div class="table-container"></div>
+</div>
+<script th:src="@{/js/user-main.js}"></script>
+<script th:src="@{/js/menu.js}"></script>
 </body>
 </html>

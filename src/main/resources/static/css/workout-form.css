@@ -1,0 +1,220 @@
+/*section .report{*/
+/*    width: 80vh;*/
+/*}*/
+
+/*section .report .content{*/
+/*    max-height: 80vh;*/
+/*    overflow-y: auto;*/
+/*    width: 90%;*/
+/*}*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000;
+}
+
+section
+{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+section .workout
+{
+    position: absolute;
+    width: 80vh;
+    background: #222;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 0 150px #ce0000;
+}
+section .workout .content
+{
+    max-height: 80vh; /* Максимальная высота контейнера формы */
+    overflow-y: auto;
+    position: relative;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+section .workout .content h2
+{
+    font-size: 2em;
+    color: #ce0000;
+    text-transform: uppercase;
+}
+section .workout .content .form
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+section .workout .content .form .inputBox
+{
+    margin-top: 5px;
+    position: relative;
+    width: 100%;
+}
+
+section .workout .content .form .widthInput
+{
+    width: 400px;
+}
+
+section .workout .content .form .inputBox input
+{
+    position: relative;
+    width: 100%;
+    background: #333;
+    border: none;
+    outline: none;
+    padding: 25px 10px 7.5px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1em;
+}
+section .workout .content .form .inputBox i
+{
+    position: absolute;
+    left: 0;
+    padding: 15px 10px;
+    font-style: normal;
+    color: #aaa;
+    transition: 0.5s;
+    pointer-events: none;
+}
+.workout .content .form .inputBox input:focus ~ i,
+.workout .content .form .inputBox input:valid ~ i
+{
+    transform: translateY(-7.5px);
+    font-size: 0.8em;
+    color: #fff;
+}
+.workout .content .form .links
+{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.workout .content .form .links a
+{
+    color: #fff;
+    text-decoration: none;
+}
+.workout .content .form .links a:nth-child(2)
+{
+    color: #ce0000;
+    font-weight: 600;
+}
+.workout .content .form .inputBox input[type="button"]
+{
+    padding: 10px;
+    background: #ce0000;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.35em;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+input[type="button"]:hover{
+    opacity: 0.6;
+}
+input[type="button"]:active
+{
+    opacity: 0.6;
+}
+@media (max-width: 900px)
+{
+    section span
+    {
+        width: calc(10vw - 2px);
+        height: calc(10vw - 2px);
+    }
+}
+@media (max-width: 600px)
+{
+    section span
+    {
+        width: calc(20vw - 2px);
+        height: calc(20vw - 2px);
+    }
+}
+
+.workout .content .form .row{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    section .workout
+    {
+        width: 95%;
+    }
+    section .workout .content {
+        width: 100%;
+    }
+    section .workout .content .form .inputBox input
+    {
+        font-size: 14px;
+    }
+    section .workout .content .form .inputBox i
+    {
+        font-size: 14px;
+    }
+    .workout .content .form .inputBox input[type="submit"]
+    {
+        font-size: 14px;
+    }
+
+    section .report
+    {
+        width: 95%;
+    }
+    section .report .content {
+        width: 100%;
+    }
+    section .report .content h2{
+        font-size: 28px;
+    }
+    section .report .content .form .inputBox input
+    {
+        font-size: 14px;
+    }
+    section .report .content .form .inputBox i
+    {
+        font-size: 14px;
+    }
+    .report .content .form .inputBox input[type="submit"]
+    {
+        font-size: 14px;
+    }
+}

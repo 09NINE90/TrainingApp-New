@@ -13,4 +13,6 @@ public interface UserService {
     UserEntity getUserById(UUID id);
     String getAuthUser(CustomUserDetails user);
     String getUsersByTrainerId(UUID id);
+
+    String getJSONUserById(UUID id);
 }

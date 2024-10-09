@@ -10,7 +10,7 @@ public interface UserPhysicalParametersService {
     void saveUserPhysicalParameters(UserPhysicalParameters userPhysicalParameters);
 //    void deleteUserPhysicalParameters(UserEntity id);
 
-    String getMyPhysicalParameters(UserEntity id);
+    String getPhysicalParametersByUser(UserEntity id);
 
     void addPhysicalParameters(UserPhysicalParameters parameters);
 }

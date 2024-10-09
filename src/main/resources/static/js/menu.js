@@ -1,5 +1,4 @@
 let condition = true;
-
 function forward() {
     anime({
         targets: '.menu-small',

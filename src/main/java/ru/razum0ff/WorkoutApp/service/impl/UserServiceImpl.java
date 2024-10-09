@@ -70,4 +70,16 @@ public class UserServiceImpl implements UserService {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(arrayUsersByTrainerId);
     }
+
+    @Override
+    public String getJSONUserById(UUID id) {
+        UserEntity user = repository.findById(id).get();
+        JsonObject objectUser = new JsonObject();
+        objectUser.addProperty("name", user.getLastName() + " " + user.getFirstName());
+        objectUser.addProperty("email", user.getUsername());
+        objectUser.addProperty("phoneNumber", user.getPhoneNumber());
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(objectUser);
+    }
 }

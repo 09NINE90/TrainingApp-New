@@ -1,10 +1,11 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>План тренировок</title>
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
     <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta th:name="user-id" th:content="${userId}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -12,91 +13,49 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="nav">
-
-    <div class="container">
-        <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" class="menu">
-            <div class="menu_item"><a href='/api/v1/home' data-item='главная'>главная</a></div>
-            <div class="menu_item"><a href='/api/v1/getWorkoutPage' data-item='тренировки'>тренировки</a></div>
-            <div class="menu_item"><a href='/api/v1/getNutritionPage' data-item='питание'>питание</a></div>
-            <div class="menu_item"><a href='/api/v1/getReports' data-item='отчеты'>отчеты</a></div>
-            <div class="menu_item"><a href='/api/v1/getActivity' data-item='активность'>активность</a></div>
-            <div class="menu_item"><a href='/user/logout' data-item='выйти'>выйти</a></div>
-        </div>
-
-        <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" class="menu-small">
-            <div class="menu_small_item"><a href='/api/v1/home' data-item='главная'>главная</a></div>
-            <div class="menu_small_item"><a href='/api/v1/getWorkoutPage' data-item='тренировки'>тренировки</a></div>
-            <div class="menu_small_item"><a href='/api/v1/getNutritionPage' data-item='питание'>питание</a></div>
-            <div class="menu_small_item"><a href='/api/v1/getReports' data-item='отчеты'>отчеты</a></div>
-            <div class="menu_small_item"><a href='/api/v1/getActivity' data-item='активность'>активность</a></div>
-            <div class="menu_small_item"><a href='/user/logout' data-item='выйти'>выйти</a></div>
-        </div>
-
-        <div th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}" class="menu">
-            <div class="menu_item"><a href="/api/v1/home"  data-item='главная'>главная</a></div>
-            <div class="menu_item"><a th:href="@{'/user/' + ${userId}}" data-item='страница пользователя'>страница пользователя</a></div>
-            <div class="menu_item"><a th:href="@{'/api/v1/getWorkoutPage/' + ${userId}}" data-item='тренировки'>тренировки</a></div>
-            <div class="menu_item"><a th:href="@{'/api/v1/getNutritionPage/' + ${userId}}" data-item='питание'>питание</a></div>
-            <div class="menu_item"><a th:href="@{'/api/v1/getActivity/' + ${userId}}" data-item='активность'>активность</a></div>
-            <!--            <div class="menu_item"><a href='/user/logout' data-item='выйти'>выйти</a></div>-->
-        </div>
-
-        <div th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}" class="menu-small">
-            <div class="menu_small_item"><a href="/api/v1/home"  data-item='главная'>главная</a></div>
-            <div class="menu_small_item"><a th:href="@{'/user/' + ${userId}}" data-item='страница пользователя'>страница пользователя</a></div>
-            <div class="menu_small_item"><a th:href="@{'/api/v1/getWorkoutPage/' + ${userId}}" data-item='тренировки'>тренировки</a></div>
-            <div class="menu_small_item"><a th:href="@{'/api/v1/getNutritionPage/' + ${userId}}" data-item='питание'>питание</a></div>
-            <div class="menu_small_item"><a th:href="@{'/api/v1/getActivity/' + ${userId}}" data-item='активность'>активность</a></div>
-        </div>
-        <div class="menu_small_icon">
-            <div class="stick"></div>
-            <div class="stick"></div>
-            <div class="stick"></div>
-        </div>
-
-    </div>
-</div>
+<div class="nav-include" th:include="menu-user.html"></div>
+<div class="nav-include" th:include="menu.html"></div>
 <div class="profile">
     <h2>План тренировок</h2>
-    <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">
-        <a th:href="@{'/api/v1/setWorkoutPlan/' + ${userId}}" data-item='Добавить план тренировок'>Добавить план тренировок</a>
+    <div class="inputBox" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">
+        <input id="add-workout-plan-btn" type="button" value="добавить тренировку">
     </div>
-    <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">
-        <a th:href="@{'/api/v1/getReportsForAdmin/' + ${userId}}" data-item='Посмотреть отчеты тренировок'>Посмотреть отчеты тренировок</a>
-    </div>
+<!--    <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">-->
+<!--        <a th:href="@{'/api/v1/getReportsForAdmin/' + ${userId}}" data-item='Посмотреть отчеты тренировок'>Посмотреть отчеты тренировок</a>-->
+<!--    </div>-->
     <div class="table-container">
-        <table>
-            <thead>
-            <tr>
-                <th th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">Удаление тренировки</th>
-                <th th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Отчет</th>
-                <th>Название тренировки</th>
-                <th>Упражнение</th>
-                <th>Повторения</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="data : ${workoutPlans2}">
-                <td  th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}"><a th:href="@{'/api/v1/deleteWorkoutPlan/' + ${data.id} + '/' + ${userId}}">Удалить</a></td>
-                <td  th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}"><a th:href="@{'/api/v1/createReport/' + ${data.id}}">Сделать отчет</a></td>
-                <td th:text="${data.dayOfWeek}"></td>
-                <td>
-                    <ul>
-                        <li th:each="exercise : ${data.exercises}" th:text="${exercise}"></li>
-                    </ul>
-                </td>
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">Удаление тренировки</th>-->
+<!--                <th th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Отчет</th>-->
+<!--                <th>Название тренировки</th>-->
+<!--                <th>Упражнение</th>-->
+<!--                <th>Повторения</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="data : ${workoutPlans2}">-->
+<!--                <td  th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}"><a th:href="@{'/api/v1/deleteWorkoutPlan/' + ${data.id} + '/' + ${userId}}">Удалить</a></td>-->
+<!--                <td  th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}"><a th:href="@{'/api/v1/createReport/' + ${data.id}}">Сделать отчет</a></td>-->
+<!--                <td th:text="${data.dayOfWeek}"></td>-->
+<!--                <td>-->
+<!--                    <ul>-->
+<!--                        <li th:each="exercise : ${data.exercises}" th:text="${exercise}"></li>-->
+<!--                    </ul>-->
+<!--                </td>-->
 
-                <td>
-                    <ul>
-                        <li th:each="repetition : ${data.repetitions}" th:text="${repetition}"></li>
-                    </ul>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<!--                <td>-->
+<!--                    <ul>-->
+<!--                        <li th:each="repetition : ${data.repetitions}" th:text="${repetition}"></li>-->
+<!--                    </ul>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
     </div>
 </div>
 <script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/workout-plan.js}"></script>
 </body>
 </html>

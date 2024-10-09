@@ -63,6 +63,13 @@ a {
     text-align: center;
 }
 
+.profile h3 {
+    font-size: 1.5em;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 .profile .add_btn {
     margin-top: 20px;
     padding: 10px;
@@ -225,7 +232,26 @@ input[type="submit"]:active {
     opacity: 0.6;
 }
 
-
+.inputBox input[type="button"]
+{
+    padding: 10px;
+    background: #ce0000;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+}
+input[type="button"]:hover{
+    opacity: 0.6;
+}
+input[type="button"]:active
+{
+    opacity: 0.6;
+}
 body {
     margin: 0;
     padding: 0;

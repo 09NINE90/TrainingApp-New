@@ -13,6 +13,8 @@ import ru.razum0ff.WorkoutApp.entity.UserEntity;
 import ru.razum0ff.WorkoutApp.mapper.UserMapper;
 import ru.razum0ff.WorkoutApp.service.UserService;
 
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -40,7 +42,7 @@ public class UserApi {
 //        mailService.sendMail(user, MailType.REGISTRATION, new Properties());
         UserEntity userToSave = mapper.convertToEntity(user);
         userService.createUser(userToSave);
-        return ResponseEntity.status(HttpStatus.CREATED).header("Location", "/mainPage").build();
+        return ResponseEntity.status(HttpStatus.CREATED).header("Location", "/user/mainPage").build();
     }
 
     @GetMapping("/getAuthUser")
@@ -68,5 +70,10 @@ public class UserApi {
         modelAndView.setViewName("user-page");
         modelAndView.addObject(id);
         return modelAndView;
+    }
+
+    @GetMapping("/getUserById/{userId}")
+    public String getUserById(@PathVariable("userId") UUID id){
+        return userService.getJSONUserById(id);
     }
 }

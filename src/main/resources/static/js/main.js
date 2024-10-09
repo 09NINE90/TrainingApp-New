@@ -10,11 +10,10 @@ const tbody = document.createElement('tbody');
 fetch('/user/getAuthUser')
     .then(response => response.json())
     .then(data => {
-        userEmailSpan.innerHTML = data.email;
-        userFirstNameSpan.innerHTML = data.firstName;
-        userLastNameSpan.innerHTML = data.lastName;
-        userRole.innerHTML = data.role;
-        console.log(userRole.innerHTML)
+        userEmailSpan.textContent = data.email;
+        userFirstNameSpan.textContent = data.firstName;
+        userLastNameSpan.textContent = data.lastName;
+        userRole.textContent = data.role;
         if (data.role === 'ROLE_USER'){
             const theadRow = thead.insertRow();
             theadRow.innerHTML =
@@ -51,7 +50,7 @@ function getMyPhysicalParameters() {
         .then(data => {
             data.forEach(parameters => {
                 const row = tbody.insertRow();
-                row.setAttribute('data-cart', JSON.stringify(parameters)); // Добавляем объект cart как атрибут строки
+                row.setAttribute('data-parameters', JSON.stringify(parameters));
                 row.innerHTML = `
                                 <td>${parameters.weight}</td>
                                 <td>${parameters.armCircumference}</td>
@@ -75,7 +74,7 @@ function getUsers() {
         .then(data => {
             data.forEach(users => {
                 const row = tbody.insertRow();
-                row.setAttribute('data-user', JSON.stringify(users)); // Добавляем объект cart как атрибут строки
+                row.setAttribute('data-user', JSON.stringify(users));
                 row.innerHTML = `
                                 <td>${users.name}</td>
                                 <td>${users.email}</td>
@@ -85,7 +84,6 @@ function getUsers() {
                 ;
                 const btnToUserPage = row.querySelector('#to-user-page')
                 btnToUserPage.addEventListener('click', ()=>{
-                    console.log(row.getAttribute('data-user'))
                     window.location.href = `/user/getUserPage/${users.id}`;
                 })
                 table.appendChild(tbody);

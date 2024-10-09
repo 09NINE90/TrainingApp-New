@@ -13,6 +13,8 @@ import ru.razum0ff.WorkoutApp.entity.UserPhysicalParameters;
 import ru.razum0ff.WorkoutApp.service.UserPhysicalParametersService;
 import ru.razum0ff.WorkoutApp.service.UserService;
 
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -30,16 +32,20 @@ public class UserPhysicalParametersApi {
     public String getMyPhysicalParameters(Authentication authentication) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         UserEntity user = userService.getUserById(userDetails.getId());
-        return userPhysicalParametersService.getMyPhysicalParameters(user);
+        return userPhysicalParametersService.getPhysicalParametersByUser(user);
     }
-
+    @GetMapping("/getPhysicalParametersByUserId/{userId}")
+    public String getPhysicalParametersByUserId(@PathVariable("userId") UUID userId) {
+        UserEntity user = userService.getUserById(userId);
+        return userPhysicalParametersService.getPhysicalParametersByUser(user);
+    }
     @PostMapping("/addPhysicalParameters")
     public ResponseEntity<Void> addPhysicalParameters(Authentication authentication, @RequestBody UserPhysicalParameters parameters) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         UserEntity user = userService.getUserById(userDetails.getId());
         parameters.setUser(user);
         userPhysicalParametersService.addPhysicalParameters(parameters);
-        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/mainPage").build();
+        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/user/mainPage").build();
     }
     @GetMapping("/getUserPhysicalParametersFormPage")
     public ModelAndView getUserPhysicalParametersFormPage(){

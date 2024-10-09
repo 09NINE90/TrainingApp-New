@@ -65,7 +65,7 @@ signUpBtn.addEventListener('click', ()=>{
             .then((response) => {
                 console.log(response);
                 if (response.ok){
-                    window.location.href = '/mainPage';
+                    window.location.href = '/user/mainPage';
                 }
             })
             .catch((error) => {
