@@ -23,37 +23,7 @@
 <!--    <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">-->
 <!--        <a th:href="@{'/api/v1/getReportsForAdmin/' + ${userId}}" data-item='Посмотреть отчеты тренировок'>Посмотреть отчеты тренировок</a>-->
 <!--    </div>-->
-    <div class="table-container">
-<!--        <table>-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">Удаление тренировки</th>-->
-<!--                <th th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Отчет</th>-->
-<!--                <th>Название тренировки</th>-->
-<!--                <th>Упражнение</th>-->
-<!--                <th>Повторения</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="data : ${workoutPlans2}">-->
-<!--                <td  th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}"><a th:href="@{'/api/v1/deleteWorkoutPlan/' + ${data.id} + '/' + ${userId}}">Удалить</a></td>-->
-<!--                <td  th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}"><a th:href="@{'/api/v1/createReport/' + ${data.id}}">Сделать отчет</a></td>-->
-<!--                <td th:text="${data.dayOfWeek}"></td>-->
-<!--                <td>-->
-<!--                    <ul>-->
-<!--                        <li th:each="exercise : ${data.exercises}" th:text="${exercise}"></li>-->
-<!--                    </ul>-->
-<!--                </td>-->
-
-<!--                <td>-->
-<!--                    <ul>-->
-<!--                        <li th:each="repetition : ${data.repetitions}" th:text="${repetition}"></li>-->
-<!--                    </ul>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-    </div>
+    <div class="table-container"></div>
 </div>
 <script th:src="@{/js/menu.js}"></script>
 <script th:src="@{/js/workout-plan.js}"></script>

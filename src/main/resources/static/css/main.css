@@ -322,6 +322,11 @@ body {
     height: auto;
 }
 
+.table-btn{
+    border: none;
+    background: none;
+    color: #fff;
+}
 @media (max-width: 768px) {
     .profile h2 {
         font-size: 24px;

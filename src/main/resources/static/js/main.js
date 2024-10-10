@@ -79,7 +79,7 @@ function getUsers() {
                                 <td>${users.name}</td>
                                 <td>${users.email}</td>
                                 <td>${users.phoneNumber}</td>
-                                <td><button id="to-user-page">Перейти</button></td>
+                                <td><button class="table-btn" id="to-user-page">Перейти</button></td>
                                `
                 ;
                 const btnToUserPage = row.querySelector('#to-user-page')

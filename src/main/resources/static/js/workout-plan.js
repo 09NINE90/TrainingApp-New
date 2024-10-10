@@ -57,7 +57,7 @@ function getWorkoutPlanForCoach(userId){
                 const row = tbody.insertRow();
                 row.setAttribute('data-workout-plan', JSON.stringify(workoutPlan));
                 row.innerHTML = `
-                                <td><button id="delete-workout-plan-btn">Удалить</button></td>
+                                <td><button class="table-btn" id="delete-workout-plan-btn">Удалить</button></td>
                                 <td>${workoutPlan.name}</td>
                                 <td><ul>${workoutPlan.exercises.map(exercise => `<li>${exercise}</li>`).join('')}</ul></td>
                                 <td><ul>${workoutPlan.repetitions.map(repetition => `<li>${repetition}</li>`).join('')}</ul></td>
@@ -96,7 +96,7 @@ function getWorkoutPlanForUser(){
                 const row = tbody.insertRow();
                 row.setAttribute('data-workout-plan', JSON.stringify(workoutPlan));
                 row.innerHTML = `
-                                <td><button id="create-report-btn">Создать отчет</button></td>
+                                <td><button class="table-btn" id="create-report-btn">Создать отчет</button></td>
                                 <td>${workoutPlan.name}</td>
                                 <td><ul>${workoutPlan.exercises.map(exercise => `<li>${exercise}</li>`).join('')}</ul></td>
                                 <td><ul>${workoutPlan.repetitions.map(repetition => `<li>${repetition}</li>`).join('')}</ul></td>
