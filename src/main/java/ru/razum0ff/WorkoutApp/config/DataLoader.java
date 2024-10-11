@@ -22,12 +22,12 @@ public class DataLoader implements CommandLineRunner {
     @java.lang.Override
     public void run(java.lang.String... args) throws JxltEngine.Exception {
         UserEntity user = new UserEntity();
-        user.setFirstName("Алексей");
-        user.setLastName("Разумов");
-        user.setUsername("raz@ya.ru");
-        user.setPhoneNumber("+7 (999) 99-99-999");
+        user.setFirstName("Имя");
+        user.setLastName("Фамилия");
+        user.setUsername("почта");
+        user.setPhoneNumber("+7 номер");
         user.setRoles("ROLE_ADMIN");
-        user.setPassword(encoder.encode("raz@ya.ru"));
+        user.setPassword(encoder.encode("пароль"));
 //        userRepository.save(user);
 //        System.out.println("Пользователь добавлен!");
     }
