@@ -29,12 +29,17 @@ fetch('/user/getAuthUser')
             const reportsUser = document.querySelector('.reports-user');
             const activityUser = document.querySelector('.activity-user');
             const addWorkoutPlanBtn = document.querySelector('#add-workout-plan-btn');
+            const checkReportOfWorkoutBtn = document.querySelector('#check-report-of-workout-btn');
             const userId = $("meta[name='user-id']").attr("content");
             addWorkoutPlanBtn.addEventListener('click', () => {
                 window.location.href = `/user/getWorkoutPlanForm/${userId}`;
             })
+            checkReportOfWorkoutBtn.addEventListener('click', () => {
+                window.location.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
+            })
             mainUser.href = `/user/getUserPage/${userId}`;
             workoutUser.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
+            reportsUser.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
             const theadRow = thead.insertRow();
             theadRow.innerHTML =
                 '            <th>Удаление</th>'+
@@ -102,25 +107,10 @@ function getWorkoutPlanForUser(){
                                 <td><ul>${workoutPlan.repetitions.map(repetition => `<li>${repetition}</li>`).join('')}</ul></td>
                                `
                 ;
-                // const btnCreateReport = row.querySelector('#create-report-btn')
-                // btnCreateReport.addEventListener('click', ()=>{
-                //     fetch(`/user/deleteWorkoutPlanById/${workoutPlan.id}`, {
-                //         method: 'DELETE',
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //             'X-CSRF-TOKEN': token
-                //         },
-                //     })
-                //         .then(response => {
-                //             if (response.ok){
-                //                 console.log(response)
-                //                 window.location.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
-                //             }
-                //         })
-                //         .catch(error => {
-                //             console.error('Ошибка при отправке формы:', error);
-                //         });
-                // })
+                const btnCreateReport = row.querySelector('#create-report-btn')
+                btnCreateReport.addEventListener('click', ()=> {
+                    window.location.href = `/user/getReportOfWorkoutForm/${workoutPlan.id}`;
+                });
                 table.appendChild(tbody);
                 tableContainer.appendChild(table);
             })

@@ -83,4 +83,3 @@ createWorkoutPlanBtn.addEventListener('click', function(event) {
 
 });
 
-// fetch('/user/getWorkoutPlan')

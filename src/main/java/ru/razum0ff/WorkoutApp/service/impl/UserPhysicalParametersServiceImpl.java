@@ -6,16 +6,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.razum0ff.WorkoutApp.entity.UserEntity;
-import ru.razum0ff.WorkoutApp.entity.UserPhysicalParameters;
+import ru.razum0ff.WorkoutApp.entity.UserPhysicalParametersEntity;
 import ru.razum0ff.WorkoutApp.repository.UserPhysicalParametersRepository;
 import ru.razum0ff.WorkoutApp.service.UserPhysicalParametersService;
 
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UserPhysicalParametersServiceImpl implements UserPhysicalParametersService {
     UserPhysicalParametersRepository repository;
@@ -27,15 +29,15 @@ public class UserPhysicalParametersServiceImpl implements UserPhysicalParameters
 
     @Override
     @Transactional
-    public void saveUserPhysicalParameters(UserPhysicalParameters userPhysicalParameters) {
-        repository.save(userPhysicalParameters);
+    public void saveUserPhysicalParameters(UserPhysicalParametersEntity userPhysicalParametersEntity) {
+        repository.save(userPhysicalParametersEntity);
     }
 
     @Override
     public String getPhysicalParametersByUser(UserEntity user) {
-        List<UserPhysicalParameters> list = repository.findAllByUserOrderByDateDesc(user);
+        List<UserPhysicalParametersEntity> list = repository.findAllByUserOrderByDateDesc(user);
         JsonArray arrayParameters = new JsonArray();
-        for(UserPhysicalParameters parameters : list){
+        for(UserPhysicalParametersEntity parameters : list){
             JsonObject parameter = new JsonObject();
             parameter.addProperty("age", parameters.getAge());
             parameter.addProperty("weight", parameters.getWeight());
@@ -54,7 +56,8 @@ public class UserPhysicalParametersServiceImpl implements UserPhysicalParameters
 
     @Override
     @Transactional
-    public void addPhysicalParameters(UserPhysicalParameters parameters) {
+    public void addPhysicalParameters(UserPhysicalParametersEntity parameters) {
+        log.info("Сохранение физических параметров");
         repository.save(parameters);
     }
 

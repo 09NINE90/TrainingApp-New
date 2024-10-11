@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface WorkoutPlanService {
-    List<WorkoutPlanFormBody> getWorkoutPlan(UUID uuid);
+    List<WorkoutPlanFormBody> getWorkoutPlanByUser(UUID uuid);
     void createWorkoutPlan(WorkoutPlanFormBody body);
 
     void deleteWorkoutPlanById(UUID planId);
+
+    WorkoutPlanFormBody getWorkoutPlanById(UUID workoutPlanId);
 }

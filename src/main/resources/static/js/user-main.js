@@ -17,6 +17,7 @@ const userId = $("meta[name='user-id']").attr("content");
 
 mainUser.href = `/user/getUserPage/${userId}`;
 workoutUser.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
+reportsUser.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
 fetch(`/user/getUserById/${userId}`)
     .then(response => response.json())
     .then(data => {

@@ -49,6 +49,7 @@ section .default-from .content
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: center;
     gap: 40px;
 }
 section .default-from .content h2
@@ -155,6 +156,9 @@ input[type="button"]:active
     opacity: 0.6;
 }
 
+.report-form-title{
+    font-size: 1.7em;
+}
 
 /*==========================================================================*/
 /*==========================================================================*/

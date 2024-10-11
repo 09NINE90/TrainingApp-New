@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактировать отчет по тренировке</title>
+  <meta th:name="_csrf" th:content="${_csrf.token}"/>
+  <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <meta th:name="report-of-workout-plan-id" th:content="${reportOfWorkoutId}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/login-form.css}">
+  <link rel="stylesheet" th:href="@{/css/report-form.css}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<section>
+  <div class="default-from report">
+    <div class="content">
+      <h2>Отчет о тренировке</h2>
+      <form id="report-from" class="form" method="post">
+        <div class="inputBox" id="save-btn">
+          <input  type="button" value="сохранить отчет">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<script th:src="@{/js/report-of-workout-edit-form.js}"></script>
+</body>
+</html>

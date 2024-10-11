@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(schema = "workout_app", name = "workout_plan")
-public class WorkoutPlan {
+public class WorkoutPlanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

@@ -20,9 +20,9 @@
     <div class="inputBox" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">
         <input id="add-workout-plan-btn" type="button" value="добавить тренировку">
     </div>
-<!--    <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">-->
-<!--        <a th:href="@{'/api/v1/getReportsForAdmin/' + ${userId}}" data-item='Посмотреть отчеты тренировок'>Посмотреть отчеты тренировок</a>-->
-<!--    </div>-->
+    <div class="inputBox" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">
+        <input id="check-report-of-workout-btn" type="button" value="посмотреть отчеты тренировок">
+    </div>
     <div class="table-container"></div>
 </div>
 <script th:src="@{/js/menu.js}"></script>

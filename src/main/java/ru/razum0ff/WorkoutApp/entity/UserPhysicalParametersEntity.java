@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(schema = "workout_app", name = "user_phys_parameters")
-public class UserPhysicalParameters {
+public class UserPhysicalParametersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -34,7 +34,7 @@ public class UserPhysicalParameters {
 
     @Override
     public String toString(){
-        return "Вес: " + this.weight + " Обхват руки: " + this.armCircumference + " Обхват ноги: " + this.legGirth +
+        return "Пользоваетль: " + this.user.toString() + "Вес: " + this.weight + " Обхват руки: " + this.armCircumference + " Обхват ноги: " + this.legGirth +
                 " Обхват грудной клетки: " + this.chestCircumference + " Обхват бедер: " + this.waistCircumference +
                 " Дата: " + this.date;
     }

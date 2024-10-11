@@ -28,11 +28,15 @@ public class WorkoutPlanApi {
     @GetMapping("/getWorkoutPlan")
     public List<WorkoutPlanFormBody> getWorkoutPlan(Authentication authentication){
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        return workoutPlanService.getWorkoutPlan(userDetails.getId());
+        return workoutPlanService.getWorkoutPlanByUser(userDetails.getId());
+    }
+    @GetMapping("/getWorkoutPlanById/{workoutPlanId}")
+    private WorkoutPlanFormBody getWorkoutPlanById(@PathVariable("workoutPlanId") UUID workoutPlanId){
+        return workoutPlanService.getWorkoutPlanById(workoutPlanId);
     }
     @GetMapping("/getWorkoutPlanByUser/{userId}")
     public List<WorkoutPlanFormBody> getWorkoutPlanByUser(@PathVariable("userId")UUID userId){
-        return workoutPlanService.getWorkoutPlan(userId);
+        return workoutPlanService.getWorkoutPlanByUser(userId);
     }
     @GetMapping("/getWorkoutPlanPage")
     public ModelAndView getWorkoutPlanPage(){

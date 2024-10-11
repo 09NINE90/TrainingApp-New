@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.razum0ff.WorkoutApp.dto.CustomUserDetails;
 import ru.razum0ff.WorkoutApp.entity.UserEntity;
-import ru.razum0ff.WorkoutApp.entity.UserPhysicalParameters;
+import ru.razum0ff.WorkoutApp.entity.UserPhysicalParametersEntity;
 import ru.razum0ff.WorkoutApp.service.UserPhysicalParametersService;
 import ru.razum0ff.WorkoutApp.service.UserService;
 
@@ -40,7 +40,7 @@ public class UserPhysicalParametersApi {
         return userPhysicalParametersService.getPhysicalParametersByUser(user);
     }
     @PostMapping("/addPhysicalParameters")
-    public ResponseEntity<Void> addPhysicalParameters(Authentication authentication, @RequestBody UserPhysicalParameters parameters) {
+    public ResponseEntity<Void> addPhysicalParameters(Authentication authentication, @RequestBody UserPhysicalParametersEntity parameters) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         UserEntity user = userService.getUserById(userDetails.getId());
         parameters.setUser(user);
