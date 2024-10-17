@@ -23,11 +23,11 @@ fetch('/user/getAuthUser')
             getWorkoutPlanForUser();
         }
         else {
-            const mainUser = document.querySelector('.main-user');
-            const workoutUser = document.querySelector('.workout-user');
-            const nutritionUser = document.querySelector('.nutrition-user');
-            const reportsUser = document.querySelector('.reports-user');
-            const activityUser = document.querySelector('.activity-user');
+            const mainUser = document.querySelectorAll('.main-user');
+            const workoutUser = document.querySelectorAll('.workout-user');
+            const nutritionUser = document.querySelectorAll('.nutrition-user');
+            const reportsUser = document.querySelectorAll('.reports-user');
+            const activityUser = document.querySelectorAll('.activity-user');
             const addWorkoutPlanBtn = document.querySelector('#add-workout-plan-btn');
             const checkReportOfWorkoutBtn = document.querySelector('#check-report-of-workout-btn');
             const userId = $("meta[name='user-id']").attr("content");
@@ -37,9 +37,18 @@ fetch('/user/getAuthUser')
             checkReportOfWorkoutBtn.addEventListener('click', () => {
                 window.location.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
             })
-            mainUser.href = `/user/getUserPage/${userId}`;
-            workoutUser.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
-            reportsUser.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
+            for (const elem of mainUser) {
+                elem.href = `/user/getUserPage/${userId}`;
+            }
+            for (const elem of workoutUser) {
+                elem.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
+            }
+            for (const elem of reportsUser) {
+                elem.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
+            }
+            for (const elem of nutritionUser) {
+                elem.href = `/user/getNutritionReportPageByUser/${userId}`;
+            }
             const theadRow = thead.insertRow();
             theadRow.innerHTML =
                 '            <th>Удаление</th>'+

@@ -23,17 +23,26 @@ fetch('/user/getAuthUser')
             getReportOfWorkoutForUser();
         }
         else {
-            const mainUser = document.querySelector('.main-user');
-            const workoutUser = document.querySelector('.workout-user');
-            const nutritionUser = document.querySelector('.nutrition-user');
-            const reportsUser = document.querySelector('.reports-user');
-            const activityUser = document.querySelector('.activity-user');
+            const mainUser = document.querySelectorAll('.main-user');
+            const workoutUser = document.querySelectorAll('.workout-user');
+            const nutritionUser = document.querySelectorAll('.nutrition-user');
+            const reportsUser = document.querySelectorAll('.reports-user');
+            const activityUser = document.querySelectorAll('.activity-user');
             const addWorkoutPlanBtn = document.querySelector('#add-workout-plan-btn');
             const checkReportOfWorkoutBtn = document.querySelector('#check-report-of-workout-btn');
             const userId = $("meta[name='user-id']").attr("content");
-            mainUser.href = `/user/getUserPage/${userId}`;
-            workoutUser.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
-            reportsUser.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
+            for (const elem of mainUser) {
+                elem.href = `/user/getUserPage/${userId}`;
+            }
+            for (const elem of workoutUser) {
+                elem.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
+            }
+            for (const elem of reportsUser) {
+                elem.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
+            }
+            for (const elem of nutritionUser) {
+                elem.href = `/user/getNutritionReportPageByUser/${userId}`;
+            }
             const theadRow = thead.insertRow();
             theadRow.innerHTML =
                 '            <th>Дата тренировки</th>'+
@@ -53,8 +62,12 @@ function getReportOfWorkoutForUser() {
             data.forEach(reportOfWorkout => {
                 const row = tbody.insertRow();
                 row.setAttribute('data-report-of-workout', JSON.stringify(reportOfWorkout));
+
+                const reportDate = new Date(reportOfWorkout.date);
+                const formattedDate = reportDate.toLocaleDateString('en-GB');
+
                 row.innerHTML = `
-                                <td>${reportOfWorkout.date}</td>
+                                <td>${formattedDate}</td>
                                 <td><ul>${reportOfWorkout.exercises.map(exercise => `<li>${exercise}</li>`).join('')}</ul></td>
                                 <td><ul>${reportOfWorkout.reports.map(repetition => `<li>${repetition}</li>`).join('')}</ul></td>
                                 <td><button class="table-btn" id="edit-report-btn">Изменить</button></td>

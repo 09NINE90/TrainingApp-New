@@ -7,17 +7,25 @@ const tableContainer = document.querySelector('.table-container');
 const table = document.createElement('table');
 const thead = document.createElement('thead');
 const tbody = document.createElement('tbody');
-const mainUser = document.querySelector('.main-user')
-const workoutUser = document.querySelector('.workout-user')
-const nutritionUser = document.querySelector('.nutrition-user')
-const reportsUser = document.querySelector('.reports-user')
-const activityUser = document.querySelector('.activity-user')
+const mainUser = document.querySelectorAll('.main-user')
+const workoutUser = document.querySelectorAll('.workout-user')
+const nutritionUser = document.querySelectorAll('.nutrition-user')
+const reportsUser = document.querySelectorAll('.reports-user')
+const activityUser = document.querySelectorAll('.activity-user')
 
 const userId = $("meta[name='user-id']").attr("content");
-
-mainUser.href = `/user/getUserPage/${userId}`;
-workoutUser.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
-reportsUser.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
+for (const elem of mainUser) {
+    elem.href = `/user/getUserPage/${userId}`;
+}
+for (const elem of workoutUser) {
+    elem.href = `/user/getWorkoutPlanPageByUserId/${userId}`;
+}
+for (const elem of reportsUser) {
+    elem.href = `/user/getReportOfWorkoutPageByUserId/${userId}`;
+}
+for (const elem of nutritionUser) {
+    elem.href = `/user/getNutritionReportPageByUser/${userId}`;
+}
 fetch(`/user/getUserById/${userId}`)
     .then(response => response.json())
     .then(data => {

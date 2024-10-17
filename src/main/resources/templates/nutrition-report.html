@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Питание</title>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta th:name="user-id" th:content="${userId}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script th:src="@{/js/anime.min.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="nav-include" th:include="menu-user.html"></div>
+<div class="nav-include" th:include="menu.html"></div>
+<div class="profile">
+    <h2>Питание</h2>
+<!--    <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_COACH'')')}">-->
+<!--        <a th:href="@{'/api/v1/setNutritionPlan/' + ${userId}}" data-item='Добавить план питания'>Добавить план питания</a>-->
+<!--    </div>-->
+    <div class="contact" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+        <p>РЕКОМЕНДАЦИИ</p>
+        <p>Стоп продукты - Все продукты в которых есть транс жиры (маргарин, пальмовое, гидролизированное масло)</p>
+        <p>Ограничиваем - Сахар и фруктозу ( в % соотношении на каждый день), сахара заменитель.</p>
+        <p>Вода в день не менее 2,5 л. - 3 л. - 50 % чистая вода</p>
+        <p>Все спортивное питание так же учитывается в КАЛОРИЙНОСТИ ДНЯ!</p>
+        <p>В БЖУ учитываем ВСЕ - кроме зеленых овощей и клетчатки</p>
+        <p>Каждый день все забиваем вcе приемы пищи в программу Fat Secret</p>
+        <p>Потом КБЖУ за весь день вносим в эту форму (один день - одна запись)</p>
+    </div>
+    <form class="form" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+        <div class="inputBox">
+            <input type="number" step="0.01" id="calories" name="calories" placeholder="Калории" required>
+        </div>
+        <div class="inputBox">
+            <input type="number" step="0.01" id="proteins" name="proteins" placeholder="Белки" required>
+        </div>
+        <div class="inputBox">
+            <input type="number" step="0.01" id="fats" name="fats" placeholder="Жиры" required>
+        </div>
+        <div class="inputBox">
+            <input type="number" step="0.01" id="carbohydrates" name="carbohydrates" placeholder="Углеводы" required>
+        </div>
+        <div class="inputBox">
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div class="inputBox">
+            <input type="button" id="add-nutrition-report-btn" value="добавить">
+        </div>
+    </form>
+
+    <div class="contact">
+        <p>Средние значения за неделю <span id="start-week"> </span> - <span id="end-week"> </span>:</p>
+        <p> - Калории: <span id="calories-week"></span></p>
+        <p> - Белки: <span id="proteins-week"></span></p>
+        <p> - Жиры: <span id="fats-week"></span></p>
+        <p> - Углеводы: <span id="carbohydrates-week"></span></p>
+    </div>
+    <div class="table-container"></div>
+</div>
+<script th:src="@{/js/menu.js}"></script>
+<script th:src="@{/js/nutrition-report.js}"></script>
+</body>
+</html>
