@@ -10,9 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.razum0ff.WorkoutApp.dto.CustomUserDetails;
 import ru.razum0ff.WorkoutApp.dto.UserDTO;
 import ru.razum0ff.WorkoutApp.entity.UserEntity;
+import ru.razum0ff.WorkoutApp.entity.enumiration.MailType;
 import ru.razum0ff.WorkoutApp.mapper.UserMapper;
+import ru.razum0ff.WorkoutApp.service.MailService;
 import ru.razum0ff.WorkoutApp.service.UserService;
 
+import java.util.Properties;
 import java.util.UUID;
 
 @RestController
@@ -21,11 +24,13 @@ import java.util.UUID;
 public class UserApi {
     UserService userService;
     UserMapper mapper;
+    MailService mailService;
 
     @Autowired
-    public UserApi(UserService userService, UserMapper mapper) {
+    public UserApi(UserService userService, UserMapper mapper, MailService mailService) {
         this.userService = userService;
         this.mapper = mapper;
+        this.mailService = mailService;
     }
 
     @PostMapping("/createUser")
@@ -39,10 +44,16 @@ public class UserApi {
             user.setRoles("ROLE_COACH");
         }
 //        user.setRoles("ROLE_ADMIN");
-//        mailService.sendMail(user, MailType.REGISTRATION, new Properties());
         UserEntity userToSave = mapper.convertToEntity(user);
         userService.createUser(userToSave);
         return ResponseEntity.status(HttpStatus.CREATED).header("Location", "/user/mainPage").build();
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
     }
 
     @GetMapping("/getAuthUser")

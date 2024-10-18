@@ -18,8 +18,7 @@
   <h2>Главная <a href='/user/logout' data-item='выйти'>выйти</a></h2>
   <div class="contact">
     <p>Email: <span id="user-email"></span></p>
-    <p>Имя: <span id="user-first-name"></span></p>
-    <p>Фамилия: <span id="user-last-name"></span></p>
+    <p>Фамилия Имя: <span id="user-last-name"></span> <span id="user-first-name"></span></p>
     <p style="display: none">Роль: <span id="user-role"></span></p>
   </div>
   <div class="add_btn" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">

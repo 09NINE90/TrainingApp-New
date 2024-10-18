@@ -5,32 +5,40 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.razum0ff.WorkoutApp.dto.CustomUserDetails;
 import ru.razum0ff.WorkoutApp.entity.UserEntity;
+import ru.razum0ff.WorkoutApp.entity.enumiration.MailType;
 import ru.razum0ff.WorkoutApp.mapper.UserMapper;
 import ru.razum0ff.WorkoutApp.repository.UserRepository;
+import ru.razum0ff.WorkoutApp.service.MailService;
 import ru.razum0ff.WorkoutApp.service.UserService;
 
+import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
     private final UserMapper mapper;
     private final PasswordEncoder encoder;
+    private final MailService mailService;
 
     @Override
     @Transactional
     public void createUser(UserEntity user) {
+        mailService.sendMail(user, MailType.REGISTRATION, new Properties());
         user.setPassword(encoder.encode(user.getPassword()));
         user.setId(UUID.randomUUID());
         repository.save(user);
+        log.info("Создан пользователь: " + user.getUsername());
     }
 
     @Override

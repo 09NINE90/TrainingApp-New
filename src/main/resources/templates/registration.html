@@ -1,0 +1,44 @@
+
+<html lang = "en">
+<head>
+  <meta charset="UTF-8">
+  <title>Спасибо, ${name}</title>
+  <style>
+    #body {
+      display: flex;
+      flex-direction: column;
+      font-family: "Segoe UI", sans-serif;
+      align-items: center;
+      background-color: #ce0000;
+      font-size: 15px;
+      height: 100%;
+    }
+    #div {
+      display: block;
+      flex-direction: column;
+      margin: 10%;
+      font-family: "Segoe UI", serif;
+      background-color: black;
+      padding: 3%;
+      border-radius: 20px;
+      color: white;
+    }
+
+    #a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div id="body">
+  <div id="div">
+    <h1 style="text-align: center">Регистрация</h1>
+    <p>Здравствуйте, ${name}!</p>
+    <p>Ваш аккаунт зарегистрирован!</p>
+    <p>Ваш логин <br> ${email}</p>
+    <p>Ваш пароль <br> ${password}</p>
+    <p>Чтобы войти, перейдите по <a id="a" href="http://razumofftraining.ru/login">ссылке</a>: </p>
+  </div>
+</div>
+</body>
+</html>
