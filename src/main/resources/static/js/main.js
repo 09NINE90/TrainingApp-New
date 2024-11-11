@@ -6,6 +6,7 @@ const tableContainer = document.querySelector('.table-container');
 const table = document.createElement('table');
 const thead = document.createElement('thead');
 const tbody = document.createElement('tbody');
+const token = $("meta[name='_csrf']").attr("content");
 
 fetch('/user/getAuthUser')
     .then(response => response.json())
@@ -23,7 +24,9 @@ fetch('/user/getAuthUser')
                 '            <th>Обхват бедер (см)</th>'+
                 '            <th>Обхват талии (см)</th>\n'+
                 '            <th>Обхват грудной клетки (см)</th>'+
-                '            <th>Дата</th>'
+                '            <th>Дата</th>'+
+                '            <th>Удаление</th>'
+
             ;
             table.appendChild(thead);
             tableContainer.appendChild(table);
@@ -51,16 +54,41 @@ function getMyPhysicalParameters() {
             data.forEach(parameters => {
                 const row = tbody.insertRow();
                 row.setAttribute('data-parameters', JSON.stringify(parameters));
+
+                const reportDate = new Date(parameters.date);
+                const formattedDate = reportDate.toLocaleDateString('en-GB');
+
                 row.innerHTML = `
                                 <td>${parameters.weight}</td>
-                                <td>${parameters.armCircumference}</td>
                                 <td>${parameters.legGirth}</td>
-                                <td>${parameters.chestCircumference}</td>
+                                <td>${parameters.armCircumference}</td>
                                 <td>${parameters.hipCircumference}</td>
                                 <td>${parameters.waistCircumference}</td>
-                                <td>${parameters.date}</td>
+                                <td>${parameters.chestCircumference}</td>
+                                <td>${formattedDate}</td>
+                                <td><button class="table-btn" id="delete-parameters-btn">Удалить</button></td>
                                `
                 ;
+
+                const deleteBtn = row.querySelector('#delete-parameters-btn')
+                deleteBtn.addEventListener('click', ()=>{
+                    fetch(`/user/deleteUserPhysicalParametersById/${parameters.id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': token
+                        },
+                    })
+                        .then(response => {
+                            if (response.ok){
+                                console.log(response)
+                                window.location.href = '/user/mainPage';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Ошибка при отправке формы:', error);
+                        });
+                })
                 table.appendChild(tbody);
                 tableContainer.appendChild(table);
             })

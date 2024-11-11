@@ -15,6 +15,7 @@ import ru.razum0ff.WorkoutApp.repository.UserPhysicalParametersRepository;
 import ru.razum0ff.WorkoutApp.service.UserPhysicalParametersService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -39,6 +40,7 @@ public class UserPhysicalParametersServiceImpl implements UserPhysicalParameters
         JsonArray arrayParameters = new JsonArray();
         for(UserPhysicalParametersEntity parameters : list){
             JsonObject parameter = new JsonObject();
+            parameter.addProperty("id", String.valueOf(parameters.getId()));
             parameter.addProperty("age", parameters.getAge());
             parameter.addProperty("weight", parameters.getWeight());
             parameter.addProperty("armCircumference", parameters.getArmCircumference());
@@ -59,6 +61,12 @@ public class UserPhysicalParametersServiceImpl implements UserPhysicalParameters
     public void addPhysicalParameters(UserPhysicalParametersEntity parameters) {
         log.info("Сохранение физических параметров");
         repository.save(parameters);
+    }
+
+    @Override
+    public void deletePhysicalParametersById(UUID parametersId) {
+        log.info("Удаление физических параметров");
+        repository.deleteById(parametersId);
     }
 
 //    @Override

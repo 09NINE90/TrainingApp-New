@@ -54,4 +54,13 @@ public class UserPhysicalParametersApi {
         return modelAndView;
     }
 
+    @DeleteMapping("/deleteUserPhysicalParametersById/{parametersId}")
+    public ResponseEntity<Void> deleteUserPhysicalParametersById(@PathVariable("parametersId")UUID parametersId){
+        try {
+            userPhysicalParametersService.deletePhysicalParametersById(parametersId);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

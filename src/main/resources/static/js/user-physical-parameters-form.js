@@ -1,5 +1,10 @@
 const addBtn = document.querySelector('#add-physical-parameters-btn')
+const cancelBtn = document.querySelector('#cancel-btn')
 const token = $("meta[name='_csrf']").attr("content");
+
+cancelBtn.addEventListener('click', () => {
+    window.location.href = '/user/mainPage';
+})
 addBtn.addEventListener('click', ()=>{
     const weight = document.querySelector('#weight')
     const legGirth = document.querySelector('#leg-girth')
