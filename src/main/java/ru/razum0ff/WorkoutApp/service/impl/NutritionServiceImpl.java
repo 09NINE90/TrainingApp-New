@@ -45,7 +45,18 @@ public class NutritionServiceImpl implements NutritionReportService {
     @Override
     public WeekNutritionEntity getLastWeekNutritionReportByUser(UUID id) {
         UserEntity user = userRepository.findById(id).get();
-        return weekNutritionRepository.findFirstByUserOrderByWeekStartDesc(user);
+        WeekNutritionEntity entity = weekNutritionRepository.findFirstByUserOrderByWeekStartDesc(user);
+        if (entity.getCountDaysOfWeek() > 1){
+            setValueByDay(entity);
+        }
+        return entity;
+    }
+
+    void setValueByDay(WeekNutritionEntity entity){
+        entity.setSumCarbohydrates((float) Math.ceil(entity.getSumCarbohydrates() / entity.getCountDaysOfWeek()));
+        entity.setSumCalories((float) Math.ceil(entity.getSumCalories() / entity.getCountDaysOfWeek()));
+        entity.setSumFats((float) Math.ceil(entity.getSumFats() / entity.getCountDaysOfWeek()));
+        entity.setSumProteins((float) Math.ceil(entity.getSumProteins() / entity.getCountDaysOfWeek()));
     }
 
     private void saveNutritionToWeek(NutritionReportEntity nutritionReport, UserEntity user) {
